@@ -34,6 +34,37 @@ class TriviaTestCase(unittest.TestCase):
     Write at least one test for each test for successful operation and for expected errors.
     """
 
+    def test_get_paginated_questions(self):
+        res = self.client().get("/api/v1/questions")
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data["success"], True)
+        self.assertTrue(data["totalQuestions"])
+        self.assertTrue(len(data["questions"]))    
+    
+    def test_create_new_question(self):
+        res = self.client().post("/api/v1/questions", json=self.new_question)
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data["success"], True)
+        self.assertTrue(data["created"])
+        self.assertTrue(len(data["questions"]))
+
+    def test_delete_question(self):
+        res = self.client().delete("/api/v1/questions/1")
+        data = json.loads(res.data)
+
+        book = Question.query.filter(Question.id == 20).one_or_none()
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data["success"], True)
+        self.assertEqual(data["deleted"], 20)
+        self.assertTrue(data["totalQuestions"])
+        self.assertTrue(len(data["questions"]))
+        self.assertEqual(book, None)
+
 
 # Make the tests conveniently executable
 if __name__ == "__main__":
