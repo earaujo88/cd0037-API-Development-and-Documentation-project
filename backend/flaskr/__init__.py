@@ -63,7 +63,8 @@ def create_app(test_config=None):
     def get_categories():
         categories = query_categories()
         return jsonify({
-            "categories": categories
+            "categories": categories,
+            "success": True
         })
 
 
@@ -238,7 +239,7 @@ def create_app(test_config=None):
             return jsonify(
                 {
                     "success": True,
-                    "questions": questions,                
+                    "question": questions,                
                     "total_questions": len(questions)
                     
                 }
