@@ -80,32 +80,14 @@ The API wil return four type when a particular request fails:
 - Sample: `curl http://127.0.0.1:5000/api/v1/questions`
 ```
 {
-  "categories": [
-    {
-      "id": 1, 
-      "type": "Science"
-    }, 
-    {
-      "id": 2, 
-      "type": "Art"
-    }, 
-    {
-      "id": 3, 
-      "type": "Geography"
-    }, 
-    {
-      "id": 4, 
-      "type": "History"
-    }, 
-    {
-      "id": 5, 
-      "type": "Entertainment"
-    }, 
-    {
-      "id": 6, 
-      "type": "Sports"
-    }
-  ], 
+   "categories": {
+    "1": "Science", 
+    "2": "Art", 
+    "3": "Geography", 
+    "4": "History", 
+    "5": "Entertainment", 
+    "6": "Sports"
+  }, 
   "questions": [
     {
       "answer": "Muhammad Ali", 
@@ -271,32 +253,15 @@ The API wil return four type when a particular request fails:
 - Sample: `curl http://127.0.0.1:5000/api/v1/categories`
 ```
 {
-  "categories": [
-    {
-      "id": 1, 
-      "type": "Science"
-    }, 
-    {
-      "id": 2, 
-      "type": "Art"
-    }, 
-    {
-      "id": 3, 
-      "type": "Geography"
-    }, 
-    {
-      "id": 4, 
-      "type": "History"
-    }, 
-    {
-      "id": 5, 
-      "type": "Entertainment"
-    }, 
-    {
-      "id": 6, 
-      "type": "Sports"
-    }
-  ]
+  "categories": {
+    "1": "Science", 
+    "2": "Art", 
+    "3": "Geography", 
+    "4": "History", 
+    "5": "Entertainment", 
+    "6": "Sports"
+  }, 
+  "success": true
 }
 ```
 
