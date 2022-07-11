@@ -33,7 +33,7 @@ def create_app(test_config=None):
     """
     def query_categories():
         categories = Category.query.all()
-        categories_formatted = [category.format() for category in categories]
+        categories_formatted = {str(category.id): category.type for category in categories}
         return categories_formatted
     
     def query_question_by_term(searchTerm):
@@ -50,10 +50,10 @@ def create_app(test_config=None):
     def query_quiz(previousQuestions, category_id):
         print(category_id)
         print(previousQuestions)
-        if(category_id is None):
+        if(category_id["id"] is None):
             question = Question.query.filter(Question.id.notin_(previousQuestions)).first()
         else:
-            question = Question.query.filter(and_(Question.id.notin_(previousQuestions), Question.category == category_id)).first()
+            question = Question.query.filter(and_(Question.id.notin_(previousQuestions), Question.category == category_id["id"])).first()
         
         questions_formatted = question.format()
         return questions_formatted
@@ -96,7 +96,7 @@ def create_app(test_config=None):
         
         return jsonify({
             "questions": questions_formatted[start:end],
-            "totalQuestions": len(questions_formatted),
+            "total_questions": len(questions_formatted),
             "categories": query_categories(),
             "success": True
         })
